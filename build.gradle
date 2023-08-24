@@ -9,7 +9,7 @@ plugins {
     // id "org.jetbrains.kotlin.plugin.serialization" version "1.8.21"
 }
 
-version = "${mc_version}-1.0.0.1"
+version = "${mc_version}-${mod_version}"
 group = "tandralur" // https://docs.minecraftforge.net/en/latest/gettingstarted/#customizing-your-mod-information
 archivesBaseName = "taac"
 
