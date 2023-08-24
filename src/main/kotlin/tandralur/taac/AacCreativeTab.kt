@@ -2,8 +2,8 @@ package tandralur.taac
 
 import net.minecraft.world.item.CreativeModeTab
 import net.minecraft.world.item.ItemStack
-import net.minecraft.world.item.Items
+import tandralur.taac.items.ModItems
 
 object AacCreativeTab : CreativeModeTab(TABS.size, "taac") {
-    override fun makeIcon() = ItemStack(Items.BLACK_CANDLE)
+    override fun makeIcon() = ItemStack(ModItems.SCOTLAND_FOREVER)
 }
