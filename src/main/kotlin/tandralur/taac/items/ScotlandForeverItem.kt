@@ -9,6 +9,7 @@ import net.minecraft.tags.BlockTags
 import net.minecraft.world.entity.EquipmentSlot
 import net.minecraft.world.entity.ai.attributes.Attribute
 import net.minecraft.world.entity.ai.attributes.AttributeModifier
+import net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation
 import net.minecraft.world.entity.ai.attributes.Attributes
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
@@ -20,23 +21,25 @@ import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.material.Material
 import net.minecraftforge.common.ToolAction
 import net.minecraftforge.common.ToolActions
+import tandralur.taac.AacConfig
+import tandralur.taac.attributes.DynamicAttributeModifier
+import tandralur.taac.getValue
 
-class ScotlandForeverItem(private val damage: Float, attackSpeed: Float, props: Properties) :
-    SwordItem(Tiers.IRON, 0, 0f, props) {
-    private val blockSwordModifiers: ImmutableListMultimap<Attribute, AttributeModifier> =
-        ImmutableListMultimap.builder<Attribute, AttributeModifier>().run {
-            put(
-                Attributes.ATTACK_DAMAGE, AttributeModifier(
-                    BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", damage - 1.0, AttributeModifier.Operation.ADDITION
-                )
-            )
-            put(
-                Attributes.ATTACK_SPEED, AttributeModifier(
-                    BASE_ATTACK_SPEED_UUID, "Weapon modifier", attackSpeed - 4.0, AttributeModifier.Operation.ADDITION
-                )
-            )
-            build()
-        }
+class ScotlandForeverItem(props: Properties) : SwordItem(Tiers.IRON, 0, 0f, props) {
+    private val config = AacConfig.SERVER_CONFIG.items.scotlandForever
+    private val attackDamage by config.damage
+    private val attackSpeed by config.attackSpeed
+
+    private val blockSwordModifiers = ImmutableListMultimap.builder<Attribute, AttributeModifier>().apply {
+        put(Attributes.ATTACK_DAMAGE, DynamicAttributeModifier(
+            BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", Operation.ADDITION
+        ) { attackDamage - 1.0 })
+        put(Attributes.ATTACK_SPEED, DynamicAttributeModifier(
+            BASE_ATTACK_SPEED_UUID, "Weapon modifier", Operation.ADDITION
+        ) { attackSpeed - 4.0 })
+    }.build()
+
+    override fun getDamage() = attackDamage.toFloat()
 
     override fun canPerformAction(stack: ItemStack, toolAction: ToolAction): Boolean =
         ToolActions.DEFAULT_SWORD_ACTIONS.contains(toolAction)

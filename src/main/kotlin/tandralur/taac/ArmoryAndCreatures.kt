@@ -1,22 +1,17 @@
 package tandralur.taac
 
 import net.minecraftforge.fml.common.Mod
+import net.minecraftforge.fml.config.ModConfig
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
 import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import tandralur.taac.blocks.ModBlocks
 import tandralur.taac.items.ModItems
+import thedarkcolour.kotlinforforge.forge.LOADING_CONTEXT
 import thedarkcolour.kotlinforforge.forge.MOD_BUS
 import thedarkcolour.kotlinforforge.forge.runForDist
 
-/**
- * Main mod class. Should be an `object` declaration annotated with `@Mod`.
- * The modid should be declared in this object and should match the modId entry
- * in mods.toml.
- *
- * An example for blocks is in the `blocks` package of this mod.
- */
 @Mod(ArmoryAndCreatures.ID)
 object ArmoryAndCreatures {
     const val ID = "taac"
@@ -24,6 +19,8 @@ object ArmoryAndCreatures {
     private val LOGGER: Logger = LogManager.getLogger(ID)
 
     init {
+        LOADING_CONTEXT.registerConfig(ModConfig.Type.SERVER, AacConfig.SERVER_CONFIG_SPEC)
+
         ModBlocks.REGISTRY.register(MOD_BUS)
         ModItems.REGISTRY.register(MOD_BUS)
 

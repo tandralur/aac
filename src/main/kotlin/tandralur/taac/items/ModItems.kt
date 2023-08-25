@@ -11,6 +11,6 @@ object ModItems {
     val REGISTRY: DeferredRegister<Item> = DeferredRegister.create(ForgeRegistries.ITEMS, ArmoryAndCreatures.ID)
 
     val SCOTLAND_FOREVER by REGISTRY.registerObject("scotland_forever") {
-        ScotlandForeverItem(20f, 1.2f, Item.Properties().tab(AacCreativeTab))
+        ScotlandForeverItem(Item.Properties().tab(AacCreativeTab))
     }
 }

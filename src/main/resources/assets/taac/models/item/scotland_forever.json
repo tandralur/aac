@@ -5,11 +5,11 @@
     32
   ],
   "textures": {
-    "2": "taac:item/scottish_claymore/holder",
-    "3": "taac:item/scottish_claymore/silver",
-    "4": "taac:item/scottish_claymore/crystals",
-    "5": "taac:item/scottish_claymore/iside",
-    "particle": "taac:item/scottish_claymore/holder"
+    "2": "taac:item/scotland_forever/holder",
+    "3": "taac:item/scotland_forever/silver",
+    "4": "taac:item/scotland_forever/crystals",
+    "5": "taac:item/scotland_forever/iside",
+    "particle": "taac:item/scotland_forever/holder"
   },
   "elements": [
     {
