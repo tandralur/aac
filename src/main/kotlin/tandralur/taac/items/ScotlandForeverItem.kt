@@ -7,6 +7,7 @@ import net.minecraft.core.BlockPos
 import net.minecraft.network.chat.Component
 import net.minecraft.tags.BlockTags
 import net.minecraft.world.entity.EquipmentSlot
+import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.entity.ai.attributes.Attribute
 import net.minecraft.world.entity.ai.attributes.AttributeModifier
 import net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation
@@ -42,7 +43,7 @@ class ScotlandForeverItem(props: Properties) : SwordItem(Tiers.IRON, 0, 0f, prop
     override fun getDamage() = attackDamage.toFloat()
 
     override fun canPerformAction(stack: ItemStack, toolAction: ToolAction): Boolean =
-        ToolActions.DEFAULT_SWORD_ACTIONS.contains(toolAction)
+        ToolActions.DEFAULT_AXE_ACTIONS.contains(toolAction)
 
     override fun isValidRepairItem(stack: ItemStack, repairStack: ItemStack) = false
 
@@ -69,4 +70,7 @@ class ScotlandForeverItem(props: Properties) : SwordItem(Tiers.IRON, 0, 0f, prop
     override fun getMaxDamage(stack: ItemStack?) = 0
 
     override fun canBeDepleted() = false
+
+    override fun canDisableShield(stack: ItemStack, shield: ItemStack, entity: LivingEntity, attacker: LivingEntity) =
+        true
 }
