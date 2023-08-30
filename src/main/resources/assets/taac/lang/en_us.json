@@ -1,4 +1,7 @@
 {
   "itemGroup.taac": "Tales of Tandralur: Armory and Creatures",
-  "item.taac.scotland_forever": "Scotland Forever"
+  "item.taac.scotland_forever": "Scotland Forever",
+  "item.taac.scotland_forever.tooltip": "Dunmaghlas!",
+  "block.taac.self_refilling_chest": "Self-refilling Chest",
+  "block.taac.self_refilling_chest.tooltip": "This item seems to behave like an entirely normal chest to survival players. It cannot be destroyed though. Creative players can shift-click the chest to configure the interval at which it refills."
 }

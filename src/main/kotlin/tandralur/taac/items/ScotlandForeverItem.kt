@@ -16,6 +16,7 @@ import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.SwordItem
 import net.minecraft.world.item.Tiers
+import net.minecraft.world.item.TooltipFlag
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.state.BlockState
@@ -53,7 +54,20 @@ class ScotlandForeverItem(props: Properties) : SwordItem(Tiers.IRON, 0, 0f, prop
     override fun getEnchantmentValue(stack: ItemStack?) = 22
 
     override fun getName(pStack: ItemStack): Component =
-        Component.translatable(pStack.descriptionId).withStyle(ChatFormatting.GOLD, ChatFormatting.ITALIC)
+        Component.translatable(pStack.descriptionId).withStyle(ChatFormatting.GOLD)
+
+    override fun appendHoverText(
+        stack: ItemStack,
+        level: Level?,
+        tooltip: MutableList<Component>,
+        flag: TooltipFlag
+    ) {
+        tooltip.add(
+            Component.translatable("item.taac.scotland_forever.tooltip")
+                .withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY)
+        )
+        super.appendHoverText(stack, level, tooltip, flag)
+    }
 
     override fun canAttackBlock(pState: BlockState, pLevel: Level, pPos: BlockPos, pPlayer: Player) =
         !pPlayer.isCreative
